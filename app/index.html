@@ -4,39 +4,114 @@
 <!--[if IE 8]>         <html lang="en" ng-app="kpi" class="no-js lt-ie9"> <![endif]-->
 <!--[if gt IE 8]><!--> <html lang="en" ng-app="kpi" class="no-js"> <!--<![endif]-->
 <head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>My AngularJS App</title>
-  <meta name="description" content="">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="bower_components/html5-boilerplate/css/normalize.css">
-  <link rel="stylesheet" href="bower_components/html5-boilerplate/css/main.css">
-  <link rel="stylesheet" href="css/app.css"/>
-  <script src="bower_components/html5-boilerplate/js/vendor/modernizr-2.6.2.min.js"></script>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>KPI-appen</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="bower_components/html5-boilerplate/css/normalize.css">
+    <link rel="stylesheet" href="bower_components/html5-boilerplate/css/main.css">
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/app.css"/>
+    <script src="bower_components/html5-boilerplate/js/vendor/modernizr-2.6.2.min.js"></script>
 </head>
 <body>
-  <ul class="menu">
-    <li><a href="#/view1">view1</a></li>
-    <li><a href="#/view2">view2</a></li>
-  </ul>
+    <div class="jumbotron">
+        <div class="container">
+            <div id="intro">
+                <h1><span>KPI-appen</span></h1>
+                <p>Räkna ut hur mycket pengar var värt förr med hjälp av KPI.</p>
+            </div>	
+        </div>
+    </div>
 
-  <!--[if lt IE 7]>
-      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-  <![endif]-->
+    <div class="history">
+        <div class="container">
+            <div class="alert alert-info alert-dismissible" id="info" role="alert">
+                <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <strong>Info</strong> Du måste välja två olika år!
+            </div>
+            <div class="row" ng-controller="kpiController">
+                <div class="col-xs-12 col-md-6">
+                    <div class="panel panel-info">
+                        <!-- Default panel contents -->
+                        <div class="panel-heading">Beräkna</div>
+                        <!-- Input -->
+                        <div class="input-form">
+                            <form class="form-horizontal" role="form">
+                                <div class="form-group">
+                                    <label for="inputYear" class="col-sm-2 col-xs-4 control-label">Från år</label>
+                                    <div class="col-sm-4 col-xs-8">
+                                        <select class="form-control" ng-model="fromYear" ng-options="year for year in years">
+                                        </select>
+                                    </div>
+                                    <label for="inputYear" class="col-sm-2 col-xs-4 control-label">Till år</label>
+                                    <div class="col-sm-4 col-xs-8">
+                                        <select class="form-control" ng-model="toYear" ng-options="year for year in years">
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="inputAmount" class="col-sm-2 col-xs-4 control-label">Belopp</label>
+                                    <div class="col-sm-4 col-xs-5">
+                                        <input type="number" class="form-control" id="inputAmount" value="100">
+                                    </div>
+                                    <div class="col-sm-6 col-xs-3">
+                                    <button class="btn btn-info pull-right" ng-click="calculate()">Räkna ut</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-md-6">
+                    <div class="panel panel-info">
+                        <!-- Default panel contents -->
+                        <div class="panel-heading">Beräkningshistorik</div>
+                        <!-- Table -->
+                        <div class="table-placeholder">
+                            <p>Beräkna ett KPI värde för att visa det här.</p>
+                        </div>
+                        <table class="table table-striped hidden" id="result-table">
+                            <tbody id="results">
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-md-6">
+                    <div class="panel panel-info">
+                        <!-- Default panel contents -->
+                        <div class="panel-heading">Om KPI</div>
+                        <!-- Content -->
+                        <blockquote>
+                            <p>Konsumentprisindex (KPI) är det mest använda måttet för prisutveckling och används bl.a. som inflationsmått och vid avtalsreglering. KPI avser att visa hur konsumentpriserna i genomsnitt utvecklar sig för hela den privata inhemska konsumtionen, de priser konsumenterna faktiskt betalar.</p>
+                            <footer>
+                                Källa: <cite title="SCB"><a href="http://www.scb.se/sv_/Hitta-statistik/Statistik-efter-amne/Priser-och-konsumtion/Konsumentprisindex/Konsumentprisindex-KPI/">SCB</a></cite>
+                            </footer>
+                        </blockquote>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
-  <div ng-view></div>
+    <div class="navbar navbar-default navbar-fixed-bottom">
+        <div class="container">
+            <p class="navbar-text pull-left">KPI-appen version: <span app-version></span> &copy 2014 inza</p>
+            <p class="navbar-text pull-right">Datakälla: <a href="http://www.scb.se/api/">SCB:s API</a></p>
+        </div>
+    </div>
 
-  <div>Angular seed app: v<span app-version></span></div>
-
-  <!-- In production use:
-  <script src="//ajax.googleapis.com/ajax/libs/angularjs/x.x.x/angular.min.js"></script>
-  -->
-  <script src="bower_components/angular/angular.js"></script>
-  <script src="bower_components/angular-route/angular-route.js"></script>
-  <script src="js/app.js"></script>
-  <script src="js/services.js"></script>
-  <script src="js/controllers.js"></script>
-  <script src="js/filters.js"></script>
-  <script src="js/directives.js"></script>
+    <!-- In production use:
+<script src="//ajax.googleapis.com/ajax/libs/angularjs/x.x.x/angular.min.js"></script>
+-->
+    <script src="bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="bower_components/bootstrap/js/alert.js"></script>
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/services.js"></script>
+    <script src="js/controllers.js"></script>
+    <script src="js/filters.js"></script>
+    <script src="js/directives.js"></script>
 </body>
 </html>
