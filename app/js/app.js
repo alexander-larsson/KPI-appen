@@ -6,6 +6,5 @@ angular.module('kpi', [
     'kpi.filters',
     'kpi.services',
     'kpi.directives',
-    'kpi.controllers',
-    'kpi.factorys'
+    'kpi.controllers'
 ]);

@@ -2,8 +2,19 @@
 
 /* Services */
 
+angular.module('kpi.services', ['ngResource']).
+value('version', '0.1').
+factory('ScbKpi', ['$resource', function($resource) {
+    return $resource('http://api.scb.se/OV0104/v1/doris/sv/ssd/START/PR/PR0101/PR0101A/KPILevindexAr', {}, {
+        getYears: {method:'GET', isArray:false}
+    });
+}]).
+factory('HistoryItem', function() {
 
-// Demonstrate how to register services
-// In this case it is a simple value service.
-angular.module('kpi.services', []).
-  value('version', '0.1');
+    return function(fromYear, toYear, fromAmount, toAmount) {
+        this.fromYear = fromYear;
+        this.toYear = toYear;
+        this.fromAmount = fromAmount;
+        this.toAmount = toAmount;
+    };
+});
