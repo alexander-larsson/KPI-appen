@@ -9,8 +9,6 @@ angular.module('kpi.controllers', [])
 
     $scope.history = [];
     $scope.showInfoState = false;
-    //Test below
-    $scope.history.push(new HistoryItem(1992,2012,100,150));
 
     ScbKpi.getYears(function(data){
         $scope.years = data.variables[1].values;
@@ -24,6 +22,7 @@ angular.module('kpi.controllers', [])
         if($scope.toYear === $scope.fromYear) {
             $scope.showInfoState = true;
         }else{
+            //TODO CHeck if I can move this to the $resource service
             var request = {
                 query: [
                     {
@@ -38,21 +37,15 @@ angular.module('kpi.controllers', [])
                     format: "json"
                 }};
 
-            $.ajax({
-                type: 'POST',
-                url: "http://api.scb.se/OV0104/v1/doris/sv/ssd/START/PR/PR0101/PR0101A/KPILevindexAr",
-                data: JSON.stringify(request),
-                dataType: "json",
-                success: function (response) {
-                    if (response.data[0].key[0] === $scope.toYear) {
-                        toYearKPI = response.data[0].values[0];
-                        fromYearKPI = response.data[1].values[0];
-                    } else {
-                        toYearKPI = response.data[1].values[0];
-                        fromYearKPI = response.data[0].values[0];
-                    }
-                    $scope.history.push(new HistoryItem($scope.fromYear, $scope.toYear, 100, 150));
+            ScbKpi.requestKPIValues(request,function(response){
+                if (response.data[0].key[0] === $scope.toYear) {
+                    toYearKPI = response.data[0].values[0];
+                    fromYearKPI = response.data[1].values[0];
+                } else {
+                    toYearKPI = response.data[1].values[0];
+                    fromYearKPI = response.data[0].values[0];
                 }
+                $scope.history.push(new HistoryItem($scope.fromYear, $scope.toYear, toYearKPI, fromYearKPI));
             });
         }
 
