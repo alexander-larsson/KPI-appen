@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<!--[if lt IE 7]>      <html lang="en" ng-app="kpi" class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]>         <html lang="en" ng-app="kpi" class="no-js lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]>         <html lang="en" ng-app="kpi" class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]><!--> <html lang="en" ng-app="kpi" class="no-js"> <!--<![endif]-->
+<!--[if lt IE 7]>      <html lang="sv" ng-app="kpi" class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html lang="sv" ng-app="kpi" class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html lang="sv" ng-app="kpi" class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html lang="sv" ng-app="kpi" class="no-js"> <!--<![endif]-->
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="bower_components/html5-boilerplate/css/normalize.css">
     <link rel="stylesheet" href="bower_components/html5-boilerplate/css/main.css">
     <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
     <link rel="stylesheet" href="css/app.css"/>
     <script src="bower_components/html5-boilerplate/js/vendor/modernizr-2.6.2.min.js"></script>
 </head>
@@ -54,10 +55,10 @@
                                 <div class="form-group">
                                     <label for="inputAmount" class="col-sm-2 col-xs-4 control-label">Belopp</label>
                                     <div class="col-sm-4 col-xs-5">
-                                        <input type="number" class="form-control" id="inputAmount" value="100">
+                                        <input type="number" class="form-control" ng-model="fromAmount">
                                     </div>
                                     <div class="col-sm-6 col-xs-3">
-                                    <button class="btn btn-info pull-right" ng-click="calculate()">Räkna ut</button>
+                                        <button class="btn btn-info pull-right" ng-click="calculate()">Räkna ut</button>
                                     </div>
                                 </div>
                             </form>
@@ -69,14 +70,18 @@
                         <!-- Default panel contents -->
                         <div class="panel-heading">Beräkningshistorik</div>
                         <!-- Table -->
-                        {{history | json}}
-                        <div class="table-placeholder">
+                        <div class="table-placeholder" ng-hide="resultsAvailable()">
                             <p>Beräkna ett KPI värde för att visa det här.</p>
                         </div>
-                        <table class="table table-striped hidden" id="result-table">
-                            <tbody id="results">
-                            </tbody>
-                        </table>
+                            <table class="table table-striped" id="result-table" ng-cloak ng-show="resultsAvailable()">
+                                <tbody>
+                                        <tr ng-repeat="item in history">
+                                            <td>
+                                                {{item.fromAmount | currency:""}} kr år {{item.fromYear}} <i class="fa fa-arrow-right"></i> {{item.toAmount | currency:""}}  kr år  {{item.toYear}}
+                                            </td>
+                                        </tr>
+                                </tbody>
+                            </table>
                     </div>
                 </div>
                 <div class="col-xs-12 col-md-6">

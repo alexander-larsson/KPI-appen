@@ -7,9 +7,12 @@
 angular.module('kpi.controllers', [])
 .controller('kpiController', ['$scope', '$http', 'HistoryItem', 'ScbKpi', function($scope, $http, HistoryItem, ScbKpi) {
 
+    //Initialize variables in the scope
     $scope.history = [];
     $scope.showInfoState = false;
+    $scope.fromAmount = 100;
 
+    //Functions used in the scope below
     ScbKpi.getYears(function(data){
         $scope.years = data.variables[1].values;
         $scope.toYear = $scope.years[$scope.years.length-1];
@@ -17,12 +20,12 @@ angular.module('kpi.controllers', [])
     });
 
     $scope.calculate = function() {
-        var toYearKPI,fromYearKPI;
+        var toYearKPI,fromYearKPI,toAmount;
 
         if($scope.toYear === $scope.fromYear) {
             $scope.showInfoState = true;
         }else{
-            //TODO CHeck if I can move this to the $resource service
+            //TODO Check if I can move this to the $resource service
             var request = {
                 query: [
                     {
@@ -45,7 +48,8 @@ angular.module('kpi.controllers', [])
                     toYearKPI = response.data[1].values[0];
                     fromYearKPI = response.data[0].values[0];
                 }
-                $scope.history.push(new HistoryItem($scope.fromYear, $scope.toYear, toYearKPI, fromYearKPI));
+                toAmount = ((toYearKPI / fromYearKPI) * $scope.fromAmount);
+                $scope.history.push(new HistoryItem($scope.fromYear, $scope.toYear, $scope.fromAmount, toAmount));
             });
         }
 
@@ -58,5 +62,13 @@ angular.module('kpi.controllers', [])
 
     $scope.hideInfo = function() {
         $scope.showInfoState = false;
+    };
+
+    $scope.resultsAvailable = function() {
+        if($scope.history.length === 0){
+            return false;
+        }else{
+            return true;
+        }
     };
 }]);
