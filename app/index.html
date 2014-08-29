@@ -19,7 +19,7 @@
 <body>
     <div class="jumbotron">
         <div class="container">
-            <div id="intro">
+            <div id="header">
                 <h1><span>KPI-appen</span></h1>
                 <p>Räkna ut hur mycket pengar var värt förr med hjälp av KPI.</p>
             </div>	
@@ -41,21 +41,21 @@
                         <div class="input-form">
                             <form class="form-horizontal" role="form">
                                 <div class="form-group">
-                                    <label for="inputYear" class="col-sm-2 col-xs-4 control-label">Från år</label>
+                                    <label for="inputFromYear" class="col-sm-2 col-xs-4 control-label">Från år</label>
                                     <div class="col-sm-4 col-xs-8">
-                                        <select class="form-control" ng-model="fromYear" ng-options="year for year in years">
+                                        <select class="form-control" id="inputFromYear" ng-model="fromYear" ng-options="year for year in years">
                                         </select>
                                     </div>
-                                    <label for="inputYear" class="col-sm-2 col-xs-4 control-label">Till år</label>
+                                    <label for="inputToYear" class="col-sm-2 col-xs-4 control-label">Till år</label>
                                     <div class="col-sm-4 col-xs-8">
-                                        <select class="form-control" ng-model="toYear" ng-options="year for year in years">
+                                        <select class="form-control" id="inputToYear" ng-model="toYear" ng-options="year for year in years">
                                         </select>
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label for="inputAmount" class="col-sm-2 col-xs-4 control-label">Belopp</label>
                                     <div class="col-sm-4 col-xs-5">
-                                        <input type="number" class="form-control" ng-model="fromAmount">
+                                        <input type="number" class="form-control" id="inputAmount" ng-model="fromAmount">
                                     </div>
                                     <div class="col-sm-6 col-xs-3">
                                         <button class="btn btn-info pull-right" ng-click="calculate()">Räkna ut</button>
@@ -64,8 +64,6 @@
                             </form>
                         </div>
                     </div>
-                </div>
-                <div class="col-xs-12 col-md-6">
                     <div class="panel panel-info">
                         <!-- Default panel contents -->
                         <div class="panel-heading">Beräkningshistorik</div>
@@ -111,13 +109,11 @@
     <!-- In production use:
 <script src="//ajax.googleapis.com/ajax/libs/angularjs/x.x.x/angular.min.js"></script>
 -->
-    <script src="bower_components/jquery/dist/jquery.min.js"></script>
     <script src="bower_components/angular/angular.js"></script>
     <script src="bower_components/angular-resource/angular-resource.min.js"></script>
     <script src="js/app.js"></script>
     <script src="js/services.js"></script>
     <script src="js/controllers.js"></script>
-    <script src="js/filters.js"></script>
     <script src="js/directives.js"></script>
 </body>
 </html>

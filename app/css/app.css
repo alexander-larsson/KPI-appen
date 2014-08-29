@@ -16,25 +16,10 @@ h1,h2,h3,h4,h5,h6,p{
   text-align:center;
 }
 
-#intro {
+#header {
 	text-shadow: 3px 3px 3px rgba(130, 130, 130, 0.4);
 	position: relative;
 	top:80px;
-}
-
-#calc-form{
-	margin-left: auto;
-	margin-right: auto;
-	display: none;
-	max-width: 400px;
-	position: relative;
-	top:50px;
-}
-
-.history.container{
-	margin-bottom: 60px;
-	position: relative;
-	top:-15px;
 }
 
 .navbar-default{
@@ -49,10 +34,6 @@ h1,h2,h3,h4,h5,h6,p{
     font-size: 24px; 
 }
 
-.hidden{
-display: none;
-}
-
 .table-placeholder {
     text-align: center;
     text-shadow: 2px 2px 2px rgba(130, 130, 130, 0.4);
@@ -63,16 +44,17 @@ display: none;
     margin-bottom: 20px;
 }
 
-
-
-#intro h1 span {
+#header h1 span {
     border: 4px solid #333;
     padding: 2px;
 }
-#intro h1 {
+#header h1 {
     margin-bottom: 20px;
 }
 
 .input-form {
 margin:10px 15px 10px 10px;
+}
+.history {
+    margin-bottom: 20px;
 }

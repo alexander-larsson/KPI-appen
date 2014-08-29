@@ -3,7 +3,7 @@
 /* Services */
 
 angular.module('kpi.services', ['ngResource']).
-value('version', '0.1').
+value('version', '0.5').
 factory('ScbKpi', ['$resource', function($resource) {
     return $resource('http://api.scb.se/OV0104/v1/doris/sv/ssd/START/PR/PR0101/PR0101A/KPILevindexAr', {}, {
         getYears: {method:'GET', isArray:false},
