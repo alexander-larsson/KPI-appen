@@ -74,7 +74,7 @@
                         </div>
                             <table class="table table-striped" id="result-table" ng-cloak ng-show="resultsAvailable()">
                                 <tbody>
-                                        <tr ng-repeat="item in history" class="history-item">
+                                        <tr ng-repeat="item in history.slice().reverse()" class="history-item">
                                             <td>
                                                 {{item.fromAmount | currency:""}} kr år {{item.fromYear}} <i class="fa fa-arrow-right"></i> {{item.toAmount | currency:""}}  kr år  {{item.toYear}}
                                             </td>
