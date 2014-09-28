@@ -4,7 +4,7 @@ h1,h2,h3,h4,h5,h6,p{
 
 .jumbotron{
     background-image: linear-gradient(to bottom, #94c0ed 0%, #4998D0 56%);
-    height: 375px;
+    height: 325px;
 }
 
 .jumbotron p{
@@ -19,7 +19,7 @@ h1,h2,h3,h4,h5,h6,p{
 #header {
     text-shadow: 3px 3px 3px rgba(130, 130, 130, 0.4);
     position: relative;
-    top:80px;
+    top:30px;
 }
 
 .navbar-default{
@@ -67,6 +67,14 @@ h1,h2,h3,h4,h5,h6,p{
 
     .year-selector{
         margin-top: 5px;
+    }
+
+    .jumbotron{
+        height: 200px;
+    }
+
+    #header{
+        top:0px;
     }
 }
 
