@@ -1,33 +1,33 @@
 h1,h2,h3,h4,h5,h6,p{
-	color:#444;
+    color:#444;
 }
 
 .jumbotron{
-	background-image: linear-gradient(to bottom, #94c0ed 0%, #4998D0 56%);
-	height: 375px;
+    background-image: linear-gradient(to bottom, #94c0ed 0%, #4998D0 56%);
+    height: 375px;
 }
 
 .jumbotron p{
-	font-size: 20px;
-	color: #666;
+    font-size: 20px;
+    color: #666;
 }
 
 .jumbotron .container{
-  text-align:center;
+    text-align:center;
 }
 
 #header {
-	text-shadow: 3px 3px 3px rgba(130, 130, 130, 0.4);
-	position: relative;
-	top:80px;
+    text-shadow: 3px 3px 3px rgba(130, 130, 130, 0.4);
+    position: relative;
+    top:80px;
 }
 
 .navbar-default{
-	border-color: #bce8f1;
+    border-color: #bce8f1;
 }
 
 .navbar-default .container p{
-	color:#4998D0;
+    color:#4998D0;
 }
 
 .panel-heading {
@@ -53,8 +53,21 @@ h1,h2,h3,h4,h5,h6,p{
 }
 
 .input-form {
-margin:10px 15px 10px 10px;
+    margin:10px 15px 10px 10px;
 }
 .history {
     margin-bottom: 20px;
 }
+
+@media (max-width: 767px) {
+    .control-label{
+        position: relative;
+        top:10px;
+    }
+
+    .year-selector{
+        margin-top: 5px;
+    }
+}
+
+

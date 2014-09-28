@@ -5,5 +5,6 @@
 angular.module('kpi', [
     'kpi.services',
     'kpi.directives',
-    'kpi.controllers'
+    'kpi.controllers',
+    'ngAnimate'
 ]);

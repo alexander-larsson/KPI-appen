@@ -13,7 +13,8 @@
     <link rel="stylesheet" href="bower_components/html5-boilerplate/css/main.css">
     <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="css/app.css"/>
+    <link rel="stylesheet" href="css/app.css">
+    <link rel="stylesheet" href="css/animations.css">
     <script src="bower_components/html5-boilerplate/js/vendor/modernizr-2.6.2.min.js"></script>
 </head>
 <body>
@@ -42,12 +43,12 @@
                             <form class="form-horizontal" role="form">
                                 <div class="form-group">
                                     <label for="inputFromYear" class="col-sm-2 col-xs-4 control-label">Från år</label>
-                                    <div class="col-sm-4 col-xs-8">
+                                    <div class="col-sm-4 col-xs-8 year-selector">
                                         <select class="form-control" id="inputFromYear" ng-model="fromYear" ng-options="year for year in years">
                                         </select>
                                     </div>
                                     <label for="inputToYear" class="col-sm-2 col-xs-4 control-label">Till år</label>
-                                    <div class="col-sm-4 col-xs-8">
+                                    <div class="col-sm-4 col-xs-8 year-selector">
                                         <select class="form-control" id="inputToYear" ng-model="toYear" ng-options="year for year in years">
                                         </select>
                                     </div>
@@ -73,7 +74,7 @@
                         </div>
                             <table class="table table-striped" id="result-table" ng-cloak ng-show="resultsAvailable()">
                                 <tbody>
-                                        <tr ng-repeat="item in history">
+                                        <tr ng-repeat="item in history" class="history-item">
                                             <td>
                                                 {{item.fromAmount | currency:""}} kr år {{item.fromYear}} <i class="fa fa-arrow-right"></i> {{item.toAmount | currency:""}}  kr år  {{item.toYear}}
                                             </td>
@@ -101,7 +102,7 @@
 
     <div class="navbar navbar-default navbar-fixed-bottom">
         <div class="container">
-            <p class="navbar-text pull-left">KPI-appen version: <span app-version></span> &copy 2014 inza</p>
+            <p class="navbar-text pull-left">KPI-appen <span app-version></span></p>
             <p class="navbar-text pull-right">Datakälla: <a href="http://www.scb.se/api/">SCB:s API</a></p>
         </div>
     </div>
@@ -111,6 +112,7 @@
 -->
     <script src="bower_components/angular/angular.js"></script>
     <script src="bower_components/angular-resource/angular-resource.min.js"></script>
+    <script src="bower_components/angular-animate/angular-animate.min.js"></script>
     <script src="js/app.js"></script>
     <script src="js/services.js"></script>
     <script src="js/controllers.js"></script>

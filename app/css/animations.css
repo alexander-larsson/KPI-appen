@@ -1,0 +1,15 @@
+.history-item.ng-enter {
+    -webkit-transition: 0.3s linear all;
+    -moz-transition: 0.3s linear all;
+    -o-transition: 0.3s linear all;
+    transition: 0.3s linear all;
+}
+
+.history-item.ng-enter {
+    opacity: 0;
+}
+
+.history-item.ng-enter.ng-enter-active {
+    opacity: 1;
+}
+
